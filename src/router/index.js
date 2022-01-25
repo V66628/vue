@@ -5,6 +5,9 @@ import Home from '@/pages/Home'
 import Search from '@/pages/Search'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
+import Detail from '@/pages/Detail'
+import addShopCar from '@/pages/addShopCar'
+import shopCar from '@/pages/shopCar'
 Vue.use(VueRouter)
 //重写push与replace方法，因为它们的返回值为promise对象，连续push或者replace会返回一个失败的promise对象，所以要有一个失败的回调，以防止出现代码中断，报NavigationDuplicated错误
 const originPush=VueRouter.prototype.push
@@ -26,8 +29,24 @@ VueRouter.prototype.replace=function(location,resolve,reject){
 export default  new VueRouter({
     routes:[
         {
+            path:'/shopCar',
+            component:shopCar,
+            meta:{show:true}
+        },
+        {   
+            name:'addcarSuccess',
+            path:'/addcarSuccess',
+            component:addShopCar,
+            meta:{show:true}
+        },
+        {
             path:'/home',
             component:Home,
+            meta:{show:true}
+        },
+        {
+            path:'/detail/:skuid',
+            component:Detail,
             meta:{show:true}
         },
         {
@@ -52,5 +71,9 @@ export default  new VueRouter({
             path:'*',
             redirect:'/home'
         }
-    ]
+    ],
+    scrollBehavior (to, from, savedPosition) {
+        // return 期望滚动到哪个的位置
+        return {y:0}
+      }
 })
