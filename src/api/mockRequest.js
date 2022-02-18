@@ -26,6 +26,6 @@ requests.interceptors.response.use(res=>{
     return res.data
 },err=>{
     //失败的回调
-    return Promise.reject(new Error('faile'))
+    return ''
 })
 export default requests

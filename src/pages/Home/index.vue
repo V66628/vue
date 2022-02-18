@@ -29,6 +29,11 @@ export default {
       },
       mounted(){
         this.$store.dispatch('home/floor')
+       try {
+          this.$store.dispatch('user/getUserInfo')
+       } catch (error) {
+         alert(error.message)
+       }
       },
       methods:{
          
